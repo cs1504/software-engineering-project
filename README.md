@@ -181,6 +181,14 @@
 
 接收文档邮箱：software_buct@qq.com
 
+<style>
+table th:first-of-type {
+    width: 90px;
+}
+table th:nth-of-type(2) {
+    width: 160px;
+}
+</style>
 | 关键时间 | 任务 | 要求 |
 | --- | --- | --- |
 | 第二周 | 确定团长、组长和分组 | 电子版分组名单提交到邮箱，团长汇总提交 |
