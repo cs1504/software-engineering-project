@@ -6,15 +6,15 @@ table - admin（管理员）
 
 | 内容 | 字段名 | 类型及大小 | 备注 | 
 | --- | --- | --- | --- |
-| id | id | bigint(20) | 自增，唯一，索引 | 
+| id | id | bigint(20) | 主键，索引，自增 | 
 | 登录名 | loginname |  varchar(20) | 唯一，索引 |
 | 昵称 |  nickname | varchar(255) |  索引 |
 | 密码 |  password | varchar(255) | md5加密 |
 | 手机 | phone | varchar(11) | 唯一，索引 |
 | email | email | varchar(255) | 唯一，索引 |
-| 角色 | role | tinyint(1) | 是否是超级管理员 |
+| 角色 | role | tinyint(1) | 是否是超级管理员，0为超级管理员，1为普通管理员 |
 | 注册时间 | register_time | DATETIME | 年月日时分秒，自动生成 |
-| status | status | tinyint(1) | 是否被关闭 |
+| status | status | tinyint(1) | 状态，0为正常，1为停用 |
 | 头像 | avatar | varchar(255) | 存储一个地址 |
 
 用户名、手机、邮箱。登录时用正则匹配判断用户登录的方式（初级阶段只需要用户名登录即可）
@@ -32,7 +32,7 @@ table - user（用户）
 
 | 内容 | 字段名 | 类型及大小 | 备注 | 
 | --- | --- | --- | --- |
-| id | id | bigint(20) | 自增，唯一，索引 | 
+| id | id | bigint(20) | 主键，索引，自增 | 
 | 登录名 | loginname |  varchar(20) | 唯一，索引 |
 | 昵称 |  nickname | varchar(255) |  索引 |
 | 密码 |  password | varchar(255) | md5加密 |
@@ -41,7 +41,7 @@ table - user（用户）
 | qq | qq | varchar(255) | 唯一，索引 |
 | wechat | wechat | varchar(255) | 唯一，索引 |
 | 注册时间 | register_time | DATETIME | 年月日时分秒，自动 |
-| status | status | tinyint(1) | 是否被关闭 |
+| status | status | tinyint(1) | 是否被关闭，默认是0，正常 |
 | 头像 | avatar | varchar(255) | 存储一个地址 |
 
 table - audio（讲解）
@@ -128,13 +128,31 @@ table - comment（评论）
 | 内容 | 字段名 | 类型及大小 | 备注 | 
 | --- | --- | --- | --- |
 | id | id | bigint(20) | 自增，唯一，索引 |
-| option | option | tinyint(1) | 评论博物馆？文章？讲解？ |
+| coption | option | tinyint(1) |  因为option为mysql 关键字，所以修改为 coption 1为评论博物馆，2为评论展览，3为评论新闻，4为评论讲解 |
+| museum_id | museum_id | bigint(20) |  |
+| exhibition_id | exhibition_id | bigint(20) | |
+| news_id | news_id | bigint(20) | |
+| audio_id | audio_id | bigint(20) | |
 | 评论者id | user_id | bigint(20) | 索引，外键（user.id） |
 | 评论者IP | user_ip | varchar(255) | |
-| 评论时间 | date | datetime | 自动生成 | 
+| 评论时间 | time | datetime | 自动生成 | 
 | 评论正文 | content | text | |
 | 评论状态 | status | tinyint(1) | |
 | 评论父级 | parent | bigint(20) | 外键（comment.id） |
+
+
+table - logs
+
+| 内容 | 字段名 | 类型及大小 | 备注 | 
+| --- | --- | --- | --- |
+| id | id | bigint(20) | 自增，唯一，索引 |
+| 操作的 URL | url | varchar(255) | |
+| 操作者 | operator | bigint(20) | | 
+| 描述 | description | varchar(255) | |
+| 操作时间 | operate_time | datetime | |
+| ip | ip | varchar(255) | |
+| status | status | tinyint(1) | 0操作成功 1操作失败 |
+
 
 ---
 
@@ -155,7 +173,7 @@ table - term_relationships（补充的新闻分类）
 
 | 内容 | 字段名 | 类型及大小 | 备注 | 
 | --- | --- | --- | --- |
-| 新闻id |  news_id | bigint(20) | 唯一，索引 | 
+| 新闻id |  news_id | bigint(20) |  | 
 | 分类方法id | taxonomy_id | bigint(20) | |
 
 
