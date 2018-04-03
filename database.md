@@ -85,7 +85,7 @@ table - museum（博物馆）
 | 学术研究信息 | academic | text | |
 | 经度 | lng | double(10,6) | 谷歌推荐（小数点后六位，前4位） | 
 | 纬度 | lat | double(10,6) | 谷歌推荐（小数点后六位，前4位） |
-
+| 城市 | city | varchar(10) | |
 
 table - exhibition（展览）
 
