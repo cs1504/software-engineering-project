@@ -57,6 +57,12 @@ table - audio（讲解）
 | 地址 | addr | varchar(255) | |
 | 描述 | description | text | |
 | 文本 | totext | text | 语音转文本的服务（后期添加）|
+| 语音检测 taskId | taskId | varchar(255) | |
+| 语音检测 dataId | dataId | varchar(255) | |
+| 语音检测 label | label | varchar(255) | |
+| 语音检测 labeltext | labeltext | varchar(255) | |
+| 语音检测 suggestion | suggestion | varchar(255) | |
+
 
 
 table - star（打分）
@@ -99,6 +105,16 @@ table - exhibition（展览）
 | 展览介绍 | introduce | text | |
 
 
+table - exhibits（展品藏品）
+
+| 内容 | 字段名 | 类型及大小 | 备注 | 
+| --- | --- | --- | --- |
+| id | id | bigint(20) | 自增，唯一，索引 |
+| 博物馆 id | musemu_id | bigint(20) | 外键（musume.id），索引 |
+| 藏品名称 | name | varchar(255) | 索引 | 
+| 藏品介绍 | introduce | text | |
+
+
 table - news（新闻）
 
 | 内容 | 字段名 | 类型及大小 | 备注 | 
@@ -113,7 +129,8 @@ table - news（新闻）
 | 新闻状态 | status | tinyint(1) | 是否发布 | 
 | 新闻性质 | nature | tinyint(1) | 正面负面 |
 | 评论状态 | comment_status | tinyint(1) | 是否可以评论 |
-
+| 原文 URL | url | varchar(255) | |
+| 图片 url | img_url | varchar(255) | |
 
 table - news_relationships (新闻与博物馆关系表)
 
@@ -154,6 +171,16 @@ table - logs
 | status | status | tinyint(1) | 0操作成功 1操作失败 |
 
 
+table - options（可选的设置选项）
+
+| 内容 | 字段名 | 类型及大小 | 备注 | 
+| --- | --- | --- | --- |
+| id | id | bigint(20) | 自增，唯一，索引 |
+| 键名 | option_name | varchar(255) | |
+| 键值 | option_value | varchar(255) | |
+| 自动加载 | autoload | tinyint(1) | |
+
+
 ---
 
 以下表可有可无
@@ -176,12 +203,3 @@ table - term_relationships（补充的新闻分类）
 | 新闻id |  news_id | bigint(20) |  | 
 | 分类方法id | taxonomy_id | bigint(20) | |
 
-
-table - options（可选的设置选项）
-
-| 内容 | 字段名 | 类型及大小 | 备注 | 
-| --- | --- | --- | --- |
-| id | id | bigint(20) | 自增，唯一，索引 |
-| 键名 | option_name | varchar(255) | |
-| 键值 | option_value | varchar(255) | |
-| 自动加载 | autoload | tinyint(1) | |
